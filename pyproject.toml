@@ -8,9 +8,7 @@ Repository = "https://github.com/WoosterTech/agenda-template"
 [project]
 name = "agenda-template"
 description = "changeme"
-authors = [
-    { name="Karl Wooster", email="karl@woostertech.com" },
-]
+authors = [{ name = "Karl Wooster", email = "karl@woostertech.com" }]
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11,<4.0"
@@ -38,6 +36,11 @@ classifiers = [
 # ---- Main dependencies ----
 
 dependencies = [
+    "docxtpl>=0.20.0,<0.21.0",
+    "email-validator>=2.2.0,<3.0.0",
+    "pydantic>=2.11.7,<3.0.0",
+    "rich>=14.0.0,<15.0.0",
+    "typer>=0.16.0,<0.17.0",
 ]
 
 
@@ -52,6 +55,7 @@ dev = [
     "rich>=14.0.0",
     "basedpyright>=1.29.1",
     "funlog>=0.2.1",
+    "commitizen>=4.8.3",
 ]
 
 [project.scripts]
@@ -94,11 +98,11 @@ line-length = 100
 select = [
     # See: https://docs.astral.sh/ruff/rules/
     # Basic list from: https://docs.astral.sh/ruff/linter/#rule-selection
-    "E", # https://docs.astral.sh/ruff/rules/#error-e
-    "F", # https://docs.astral.sh/ruff/rules/#pyflakes-f
+    "E",  # https://docs.astral.sh/ruff/rules/#error-e
+    "F",  # https://docs.astral.sh/ruff/rules/#pyflakes-f
     "UP", # https://docs.astral.sh/ruff/rules/#pyupgrade-up
-    "B", # https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
-    "I", # https://docs.astral.sh/ruff/rules/#isort-i
+    "B",  # https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+    "I",  # https://docs.astral.sh/ruff/rules/#isort-i
     # Other possibilities:
     # "D" # https://docs.astral.sh/ruff/rules/#pydocstyle-d
     # "Q" # https://docs.astral.sh/ruff/rules/#flake8-quotes-q
@@ -113,16 +117,16 @@ ignore = [
     "E731", # https://docs.astral.sh/ruff/rules/lambda-assignment/
     # We use both ruff formatter and linter so some rules should always be disabled.
     # See: https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
-    "W191", # https://docs.astral.sh/ruff/rules/tab-indentation/
-    "E111", # https://docs.astral.sh/ruff/rules/indentation-with-invalid-multiple/
-    "E114", # https://docs.astral.sh/ruff/rules/indentation-with-invalid-multiple-comment/
-    "E117", # https://docs.astral.sh/ruff/rules/over-indented/
-    "D206", # https://docs.astral.sh/ruff/rules/docstring-tab-indentation/
-    "D300", # https://docs.astral.sh/ruff/rules/triple-single-quotes/
-    "Q000", # https://docs.astral.sh/ruff/rules/bad-quotes-inline-string/
-    "Q001", # https://docs.astral.sh/ruff/rules/bad-quotes-multiline-string/
-    "Q002", # https://docs.astral.sh/ruff/rules/bad-quotes-docstring/
-    "Q003", # https://docs.astral.sh/ruff/rules/avoidable-escaped-quote/
+    "W191",   # https://docs.astral.sh/ruff/rules/tab-indentation/
+    "E111",   # https://docs.astral.sh/ruff/rules/indentation-with-invalid-multiple/
+    "E114",   # https://docs.astral.sh/ruff/rules/indentation-with-invalid-multiple-comment/
+    "E117",   # https://docs.astral.sh/ruff/rules/over-indented/
+    "D206",   # https://docs.astral.sh/ruff/rules/docstring-tab-indentation/
+    "D300",   # https://docs.astral.sh/ruff/rules/triple-single-quotes/
+    "Q000",   # https://docs.astral.sh/ruff/rules/bad-quotes-inline-string/
+    "Q001",   # https://docs.astral.sh/ruff/rules/bad-quotes-multiline-string/
+    "Q002",   # https://docs.astral.sh/ruff/rules/bad-quotes-docstring/
+    "Q003",   # https://docs.astral.sh/ruff/rules/avoidable-escaped-quote/
     "COM812", # https://docs.astral.sh/ruff/rules/missing-trailing-comma/
     "COM819", # https://docs.astral.sh/ruff/rules/prohibited-trailing-comma/
     "ISC002", # https://docs.astral.sh/ruff/rules/multi-line-implicit-string-concatenation/
@@ -164,9 +168,14 @@ reportUnreachable = false
 python_files = ["*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-testpaths = [
-    "src",
-    "tests",
-]
+testpaths = ["src", "tests"]
 norecursedirs = []
 filterwarnings = []
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "uv"
+update_changelog_on_bump = true
+major_version_zero = true
